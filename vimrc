@@ -13,11 +13,10 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-Plugin 'codesun/xetn.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'def-lkb/vimbufsync'
-Plugin 'rust-lang/rust.vim'
+Plugin 'scrooloose/nerdtree'
 
 " Vundle manager end
 " required!
@@ -97,6 +96,11 @@ autocmd InsertLeave * call Fcitx2en()
 "进入插入模式
 autocmd InsertEnter * call Fcitx2zh()
 "##### auto fcitx end ######
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+map <F10> :NERDTreeToggle<CR>
 
 map <F11> :call Perform()<CR>
 
