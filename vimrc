@@ -11,16 +11,24 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'def-lkb/vimbufsync'
 Plugin 'scrooloose/nerdtree'
+Plugin 'fatih/vim-go'
+Plugin 'rrethy/vim-illuminate'
+Plugin 'bitc/vim-bad-whitespace'
 
 " Vundle manager end
 " required!
 call vundle#end()
+
+" Configuration for illuminate
+let g:Illuminate_delay=200
+let g:Illuminate_highlightUnderCursor=1
 
 " Configuration for neocomplete
 let g:neocomplete#enable_at_startup = 1
@@ -37,6 +45,8 @@ let g:UltiSnipsEditSplit="vertical"
 set laststatus=2
 " let g:airline#extensions#tabline#enabled = 1
 
+set mouse=a
+
 " Configuration for tagbar
 nmap <F12> :TagbarToggle<CR>
 
@@ -48,7 +58,7 @@ au FileType coq call coquille#FNMapping()
 
 " disable the toolbar on the window widget
 set guioptions-=T
-set guifont=Inconsolata\ Medium\ 10
+set guifont=Inconsolata\ Medium\ 12
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -71,31 +81,6 @@ set expandtab
 
 set autoindent
 set cindent
-
-"##### auto fcitx  ###########
-let g:input_toggle = 1
-function! Fcitx2en()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status == 2
-      let g:input_toggle = 1
-      let l:a = system("fcitx-remote -c")
-   endif
-endfunction
-
-function! Fcitx2zh()
-   let s:input_status = system("fcitx-remote")
-   if s:input_status != 2 && g:input_toggle == 1
-      let l:a = system("fcitx-remote -o")
-      let g:input_toggle = 0
-   endif
-endfunction
-
-set ttimeoutlen=150
-"退出插入模式
-autocmd InsertLeave * call Fcitx2en()
-"进入插入模式
-autocmd InsertEnter * call Fcitx2zh()
-"##### auto fcitx end ######
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
