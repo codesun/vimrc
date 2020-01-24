@@ -51,6 +51,11 @@ set mouse=a
 " Configuration for tagbar
 nmap <F12> :TagbarToggle<CR>
 
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
+
 syntax on
 filetype plugin indent on
 
