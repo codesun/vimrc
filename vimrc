@@ -21,6 +21,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'fatih/vim-go'
 Plugin 'rrethy/vim-illuminate'
 Plugin 'bitc/vim-bad-whitespace'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Vundle manager end
 " required!
@@ -52,9 +53,6 @@ nmap <F12> :TagbarToggle<CR>
 
 syntax on
 filetype plugin indent on
-
-" coquille key binding
-au FileType coq call coquille#FNMapping()
 
 " disable the toolbar on the window widget
 set guioptions-=T
